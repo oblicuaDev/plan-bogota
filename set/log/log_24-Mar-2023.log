@@ -1,0 +1,23 @@
+{
+  "dataset":"books_pb",
+  "table":"bookings",
+  "row":{
+          "uniqid": 0,
+          "name":"Karen ",
+          "email":"krn_vargas@hotmail.com",
+          "serviceid":2410,
+          "service":"De Amores Malditos - Tour Fantasmas",
+          "phone":"3205618699",
+          "companyid":2141,
+          "company":"Adventure Extreme AE Colombia SAS",
+          "datet":"2023-03-24T07:11:13",
+          "version":4,
+          "price":"40000",
+          "ocategoryid":119, 
+          "ocategory":"Agencia de Viajes/PST",
+          "ccategoryid":119,
+          "ccategory":"Agencia de Viajes/PST",
+          "guests":"1",
+          "bookid":"pb2tmmsl"
+          }
+},

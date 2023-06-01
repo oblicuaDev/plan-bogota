@@ -1,0 +1,23 @@
+{
+  "dataset":"books_pb",
+  "table":"bookings",
+  "row":{
+          "uniqid": 0,
+          "name":"Test IDT",
+          "email":"nestorgoyes@gmail.com",
+          "serviceid":2516,
+          "service":"SEMANA SANTA DE IGLESIAS",
+          "phone":"3192274282",
+          "companyid":2217,
+          "company":"Oaca Colombia",
+          "datet":"2023-04-04T06:30:56",
+          "version":4,
+          "price":"32000",
+          "ocategoryid":121, 
+          "ocategory":"Atractivo Turístico",
+          "ccategoryid":119,
+          "ccategory":"Agencia de Viajes/PST",
+          "guests":"1",
+          "bookid":"pbi9jzm9"
+          }
+},

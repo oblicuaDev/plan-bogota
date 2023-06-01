@@ -1,0 +1,77 @@
+{
+  "enableTranslates": true,
+  "enableMainHeader": true,
+  "menuItems": [
+    {
+      "es": {
+        "title": "Inicio",
+        "link": "/es/plan-bogota"
+      },
+      "en": {
+        "title": "Home",
+        "link": "/en/plan-bogota"
+      },
+      "pt": {
+        "title": "Inicio",
+        "link": "/pt/plan-bogota"
+      }
+    },
+    {
+      "es": {
+        "title": "Encuentra tu plan",
+        "link": "/es/plan-bogota/encuentra-tu-plan"
+      },
+      "en": {
+        "title": "Encuentra tu plan",
+        "link": "/en/plan-bogota/encuentra-tu-plan"
+      },
+      "pt": {
+        "title": "Encuentra tu plan",
+        "link": "/pt/plan-bogota/encuentra-tu-plan"
+      }
+    },
+    {
+      "es": {
+        "title": "Preguntas frecuentes",
+        "link": "/es/plan-bogota/preguntas-frecuentes"
+      },
+      "en": {
+        "title": "Preguntas frecuentes",
+        "link": "/en/plan-bogota/preguntas-frecuentes"
+      },
+      "pt": {
+        "title": "Preguntas frecuentes",
+        "link": "/pt/plan-bogota/preguntas-frecuentes"
+      }
+    },
+    {
+      "es": {
+        "title": "Políticas",
+        "link": "/es/plan-bogota/politica-tratamiento-datos-personales"
+      },
+      "en": {
+        "title": "Políticas",
+        "link": "/en/plan-bogota/politica-tratamiento-datos-personales"
+      },
+      "pt": {
+        "title": "Políticas",
+        "link": "/pt/plan-bogota/politica-tratamiento-datos-personales"
+      }
+    },
+
+    {
+      "es": {
+        "title": "Volver a bogotadc.travel",
+        "link": "http://bogotadc.travel/"
+      },
+      "en": {
+        "title": "Volver a bogotadc.travel",
+        "link": "http://bogotadc.travel/"
+      },
+      "pt": {
+        "title": "Volver a bogotadc.travel",
+        "link": "http://bogotadc.travel/"
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "dataset":"books_pb",
+  "table":"bookings",
+  "row":{
+          "uniqid": 0,
+          "name":"Test IDT",
+          "email":"nestorgoyes@gmail.com",
+          "serviceid":2522,
+          "service":"Maravillas de la Catedral de Sal y Casa Loca",
+          "phone":"3192274281",
+          "companyid":2222,
+          "company":"Passion Travel Colombia",
+          "datet":"2023-04-12T09:18:41",
+          "version":4,
+          "price":"380000",
+          "ocategoryid":134, 
+          "ocategory":"Bienestar",
+          "ccategoryid":119,
+          "ccategory":"Agencia de Viajes/PST",
+          "guests":"1",
+          "bookid":"pbj80wz1"
+          }
+},

@@ -1,0 +1,23 @@
+{
+  "dataset":"books_pb",
+  "table":"bookings",
+  "row":{
+          "uniqid": 0,
+          "name":"juanita londoño",
+          "email":"juantalondono@gmail.com",
+          "serviceid":2293,
+          "service":"Noche de fiesta hasta el amanecer",
+          "phone":"3000000000",
+          "companyid":2247,
+          "company":"Wow Restaurante Bar Show",
+          "datet":"2023-05-12T01:31:56",
+          "version":4,
+          "price":"80000",
+          "ocategoryid":124, 
+          "ocategory":"Entretenimiento",
+          "ccategoryid":122,
+          "ccategory":"Gastronomia",
+          "guests":"1",
+          "bookid":"pb4ezehk"
+          }
+},

@@ -1,0 +1,23 @@
+{
+  "dataset":"books_pb",
+  "table":"bookings",
+  "row":{
+          "uniqid": 0,
+          "name":"NATALIA FLECHAS",
+          "email":"nataliaflechas.97@gmail.com",
+          "serviceid":2418,
+          "service":"Plan Escapada IDT",
+          "phone":"3197181346",
+          "companyid":2231,
+          "company":"Sociedad Hotelera Tequendama S.A. - Tequendama Suites and Hotel",
+          "datet":"2023-04-27T01:15:35",
+          "version":4,
+          "price":"269000",
+          "ocategoryid":120, 
+          "ocategory":"Alojamiento",
+          "ccategoryid":120,
+          "ccategory":"Alojamiento",
+          "guests":"1",
+          "bookid":"pb0k787s"
+          }
+},

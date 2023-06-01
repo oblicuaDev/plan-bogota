@@ -1,0 +1,54 @@
+@use "../abstracts" as *;
+@include font-face(
+  "MuseoSans Condensed",
+  museo-sans-condensed-700-webfont,
+  "normal",
+  "normal"
+);
+@include font-face("MuseoSans-100", MuseoSans-100, "100", "normal");
+@include font-face("MuseoSans-500", MuseoSans-500, "500", "normal");
+@include font-face("MuseoSans-700", MuseoSans-700, "700", "normal");
+@include font-face("MuseoSans-900", MuseoSans-900, "900", "normal");
+@include font-face("MuseoSansCyrl", MuseoSansCyrl, "normal", "normal");
+@include font-face("MuseoSansCyrl", MuseoSansCyrl_0 3, "normal", "normal");
+@include font-face("museosans-500italic", museosans-500italic, "500", "italic");
+body {
+  font-size: 10px;
+  font-family: "MuseoSans-500";
+  color: #000;
+  overflow-x: hidden;
+}
+
+.thin {
+  font-weight: 100;
+}
+.light {
+  font-weight: 300;
+}
+.medium {
+  font-weight: 500;
+}
+.semibold {
+  font-weight: 600;
+}
+.bold {
+  font-weight: 700;
+}
+.black {
+  font-weight: 900;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.ms100 {
+  font-family: "MuseoSans-100";
+}
+.ms500 {
+  font-family: "MuseoSans-500";
+}
+.ms700 {
+  font-family: "MuseoSans-700";
+}
+.ms900 {
+  font-family: "MuseoSans-900";
+}

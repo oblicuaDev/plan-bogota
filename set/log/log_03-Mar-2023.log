@@ -1,0 +1,23 @@
+{
+  "dataset":"books_pb",
+  "table":"bookings",
+  "row":{
+          "uniqid": 0,
+          "name":"Fania Espinosa",
+          "email":"faniaes33@gmail.com",
+          "serviceid":2263,
+          "service":"Just be Romantic",
+          "phone":"50766754793",
+          "companyid":2146,
+          "company":"Aloft Bogotá Hotel",
+          "datet":"2023-03-03T03:55:54",
+          "version":4,
+          "price":"300000",
+          "ocategoryid":120, 
+          "ocategory":"Alojamiento",
+          "ccategoryid":120,
+          "ccategory":"Alojamiento",
+          "guests":"1",
+          "bookid":"pb4jsnm7"
+          }
+},

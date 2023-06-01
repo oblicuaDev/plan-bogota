@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteBase /plan-bogota/
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+RewriteRule ^s/([^/]*)/$ set/$1.php?lang=es [L,QSA]
+RewriteRule ^g/([^/]*)/$ get/$1.php?lang=es [L,QSA]

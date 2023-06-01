@@ -1,0 +1,23 @@
+{
+  "dataset":"books_pb",
+  "table":"bookings",
+  "row":{
+          "uniqid": 0,
+          "name":"TESTE PRUEBA IDT",
+          "email":"daniela.franco@idt.gov.co",
+          "serviceid":2570,
+          "service":"Regala a mamá un tour nocturno de Fantasmas",
+          "phone":"3002724510",
+          "companyid":2141,
+          "company":"Adventure Extreme AE Colombia SAS",
+          "datet":"2023-05-23T08:10:25",
+          "version":4,
+          "price":"46000",
+          "ocategoryid":121, 
+          "ocategory":"Atractivo Turístico",
+          "ccategoryid":119,
+          "ccategory":"Agencia de Viajes/PST",
+          "guests":"1",
+          "bookid":"pbf62ccg"
+          }
+},

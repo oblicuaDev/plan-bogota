@@ -1,0 +1,23 @@
+{
+  "dataset":"books_pb",
+  "table":"bookings",
+  "row":{
+          "uniqid": 0,
+          "name":"Lorena",
+          "email":"lorenaforero2010@hotmail.com",
+          "serviceid":2396,
+          "service":"Alójate y Descubre la Ciudad",
+          "phone":"3224504082",
+          "companyid":2200,
+          "company":"Hotel InterBogotá",
+          "datet":"2023-05-02T02:01:28",
+          "version":4,
+          "price":"120000",
+          "ocategoryid":120, 
+          "ocategory":"Alojamiento",
+          "ccategoryid":120,
+          "ccategory":"Alojamiento",
+          "guests":"1",
+          "bookid":"pb8saov8"
+          }
+},

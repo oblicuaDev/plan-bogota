@@ -1,0 +1,50 @@
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+  position: relative;
+  padding: 0 20px;
+}
+
+.loader {
+  position: relative;
+  opacity: 0.5;
+  &::after {
+    content: "";
+    border: 5px solid #ffffff;
+    border-radius: 50%;
+    border-top: 5px solid #ec6462;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+label.error {
+  color: #ff0000;
+  font-size: 12px;
+}

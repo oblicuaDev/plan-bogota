@@ -1,0 +1,42 @@
+.c-select {
+  position: relative;
+  select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    border: 1px solid #c8c8c8;
+
+    color: #666666;
+    display: flex;
+    font-size: 14px;
+    letter-spacing: -0.02em;
+    border-radius: 25px;
+    outline: none;
+    padding: 12px 35px 12px 12px;
+    text-transform: capitalize;
+    width: 100%;
+    option {
+      background-color: #fff;
+      color: #666666;
+      cursor: pointer;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: normal;
+      letter-spacing: -0.02em;
+      line-height: 25px;
+    }
+  }
+  .c-arrow {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    display: block;
+    transform: translateY(-50%);
+    width: 13px;
+    height: 13px;
+    img {
+      width: 8px;
+    }
+  }
+}

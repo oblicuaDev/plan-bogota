@@ -1,0 +1,331 @@
+.fancybox__content {
+  padding: 0 10px !important;
+  flex-direction: row;
+}
+.boxes.form {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  height: 0;
+  border-radius: 0;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+  &.active {
+    height: 100vh;
+    min-height: 768px;
+  }
+  .left {
+    flex: 1;
+    height: 100%;
+    background-image: linear-gradient(to bottom left, #6dd194, #266dcd);
+    padding: 80px 60px 30px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @media only screen and (max-width: 768px) {
+      padding: 80px 20px 30px 20px;
+    }
+    h2 {
+      color: #fff;
+      font-size: 21px;
+      margin-bottom: 9px;
+    }
+    h1 {
+      margin-bottom: 10px;
+      color: #fff;
+      font-size: 29px;
+    }
+    p {
+      color: #fff;
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+    .prices {
+      margin-bottom: 17px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      @media only screen and (max-width: 768px) {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .discount {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        justify-content: center;
+        background-image: linear-gradient(
+          to bottom,
+          #ff7c47,
+          #ff8033,
+          #cf4c1f,
+          #b0411a
+        );
+        border-radius: calc(56px / 2);
+        color: #fff;
+        font-size: 18px;
+        height: 56px;
+        width: 56px;
+      }
+      &-discount {
+        font-size: 18px;
+        position: relative;
+        display: block;
+        color: rgba($color: #fff, $alpha: 0.5);
+        width: fit-content;
+        margin: 0;
+        &::after {
+          content: "";
+          position: absolute;
+          width: calc(100% + 10px);
+          height: 1px;
+          background-color: #fff;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) rotate(-5deg);
+        }
+      }
+      &-total {
+        font-size: 35px;
+        color: #fff;
+        border-top-left-radius: 25px;
+        border-bottom-left-radius: 25px;
+        margin: 0;
+      }
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+      input {
+        font-size: 11px;
+        color: #fff;
+        background-color: rgba($color: #fff, $alpha: 0.18);
+        width: 100%;
+        border-radius: 25px;
+        padding: 15px 8px;
+        width: 100%;
+        margin-bottom: 17px;
+        &::placeholder {
+          font-size: 11px;
+          font-family: "MuseoSans-500";
+          color: #fff;
+        }
+      }
+      .politics_checkbox {
+        position: relative;
+        display: inline-flex;
+        justify-content: flex-end;
+        width: 100%;
+        margin: 0 0 0 auto;
+        grid-column: span 4;
+        cursor: pointer;
+        @media only screen and (max-width: 768px) {
+          grid-column: span 1;
+        }
+
+        @media only screen and (max-width: 768px) {
+          margin: 0 auto;
+          width: 100%;
+          max-width: 90%;
+          justify-content: center;
+        }
+        label.error {
+          position: absolute;
+          bottom: -20px;
+          color: #ff0000;
+        }
+        #politics {
+          cursor: pointer;
+          position: absolute;
+          top: 2px;
+          left: 0;
+          width: 20px;
+          height: 20px;
+          z-index: 2;
+          opacity: 0;
+          width: 100%;
+          height: 100%;
+        }
+
+        label {
+          text-align: left;
+          color: #fff;
+          cursor: pointer;
+          font-size: 12px;
+          line-height: 18px;
+          flex: 1;
+          @media screen and (max-width: 1023px) {
+            max-width: 90%;
+          }
+          a {
+            text-decoration: underline;
+            color: #fff;
+            &:hover {
+              opacity: 0.5;
+            }
+          }
+        }
+        span.politics_checkbox_mark {
+          cursor: pointer;
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          position: relative;
+          border-radius: 50%;
+          margin: 0;
+          margin-right: 10px;
+          border: 2px solid #fff;
+          &::before {
+            content: "";
+            position: absolute;
+            top: 3.7px;
+            z-index: 5;
+            left: 2px;
+            border-top: 2px solid #fff;
+            border-right: 2px solid #fff;
+            width: 10px;
+            height: 4px;
+            opacity: 0;
+            transform: rotate(130deg);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+          }
+
+          &::after {
+            content: "";
+            top: 50%;
+            left: 50%;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translate(-50%, -50%);
+            position: absolute;
+            width: 100%;
+            border-radius: 50%;
+            opacity: 0;
+            height: 100%;
+            background-color: rgba($color: #fff, $alpha: 0.3);
+          }
+        }
+        #politics:checked + span.politics_checkbox_mark {
+          &::after,
+          &::before {
+            opacity: 1;
+          }
+        }
+        &.full {
+          grid-column: 2 / span 6;
+          justify-content: center;
+          label {
+            flex: initial;
+          }
+        }
+      }
+      button {
+        background-image: linear-gradient(
+          to bottom,
+          #ff7c47,
+          #ff8033,
+          #cf4c1f,
+          #b0411a
+        );
+        color: #fff;
+        font-size: 13px;
+        border-radius: 25px;
+        padding: 15px 22px;
+        width: 50%;
+        margin: 20px auto;
+        transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+  .right {
+    padding: 80px 140px;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
+    img {
+      width: 130px;
+    }
+  }
+}
+
+.boxes.thanks {
+  width: 100%;
+  max-width: 900px;
+  padding: 0 20px;
+  .boxes__cnt {
+    // background-color: rgba($color: #2c85d7, $alpha: .2);
+    padding: 50px 0;
+    .boxes__header {
+      font-size: 3.5rem;
+      display: flex;
+      text-align: center;
+      align-items: center;
+      h2 {
+        color: #266dc7;
+      }
+      justify-content: center;
+      @media screen and (max-width: 1080px) {
+        background-color: rgba(73, 169, 46, 0.2);
+        height: 80px;
+        font-size: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        text-align: center;
+        padding: 20px;
+      }
+    }
+    .boxes__body {
+      display: flex;
+      align-items: center;
+      font-size: 1.8rem;
+      font-weight: 100;
+      padding: 20px;
+      img {
+        height: 410px;
+        margin-right: 10px;
+        @media screen and (max-width: 1080px) {
+          display: none;
+        }
+      }
+      br {
+        display: block;
+      }
+      .data {
+        margin-top: 30px;
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+      }
+      a.btn {
+        font-size: 1.5rem;
+        color: #fff;
+        display: flex;
+        margin: 20px auto;
+        position: relative;
+        align-items: center;
+        font-weight: bold;
+        letter-spacing: 0.2rem;
+        justify-content: center;
+        max-width: 270px;
+        text-transform: uppercase;
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}

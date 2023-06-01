@@ -1,0 +1,44 @@
+.btn {
+  &-back {
+    display: inline-flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    gap: 10px;
+    font-size: 13px;
+    color: #6dce91;
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    img {
+      width: 20px;
+    }
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  &-reserva {
+    background-image: linear-gradient(
+      to bottom,
+      #ff7c47,
+      #ff8033,
+      #cf4c1f,
+      #b0411a
+    );
+    color: #fff;
+    font-size: 13px;
+    border-radius: 25px;
+    padding: 15px 22px;
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    @media only screen and (max-width: 768px) {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+
+      margin: 0 auto;
+    }
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}

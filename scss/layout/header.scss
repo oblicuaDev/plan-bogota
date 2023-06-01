@@ -1,0 +1,16 @@
+.menu-desktop {
+  flex: initial;
+  width: initial;
+}
+
+@media only screen and (max-width: 768px) {
+  .find_plan {
+    header {
+      position: static;
+      padding: 0;
+    }
+  }
+  header .container .right form {
+    opacity: 0;
+  }
+}

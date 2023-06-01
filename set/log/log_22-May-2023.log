@@ -1,0 +1,23 @@
+{
+  "dataset":"books_pb",
+  "table":"bookings",
+  "row":{
+          "uniqid": 0,
+          "name":"Aracely",
+          "email":"aracelybernal@hotmail.com",
+          "serviceid":2428,
+          "service":"Camina y Vive Bogotá",
+          "phone":"70700496",
+          "companyid":2234,
+          "company":"Territorio Colombia Viajes y Turismo",
+          "datet":"2023-05-22T02:03:44",
+          "version":4,
+          "price":"122000",
+          "ocategoryid":119, 
+          "ocategory":"Agencia de Viajes/PST",
+          "ccategoryid":119,
+          "ccategory":"Agencia de Viajes/PST",
+          "guests":"1",
+          "bookid":"pbwcesoz"
+          }
+},
