@@ -1,0 +1,33 @@
+[01-Aug-2023 22:49:25 UTC] PHP Fatal error:  Uncaught Error: Using $this when not in object context in /home/bogotas/public_html/plan-bogota/set/restPost.php:74
+Stack trace:
+#0 {main}
+  thrown in /home/bogotas/public_html/plan-bogota/set/restPost.php on line 74
+[01-Aug-2023 22:50:00 UTC] PHP Warning:  Use of undefined constant HTTP_HOST - assumed 'HTTP_HOST' (this will throw an Error in a future version of PHP) in /home/bogotas/public_html/includes/bogota.php on line 1073
+[01-Aug-2023 22:50:00 UTC] PHP Warning:  Use of undefined constant REQUEST_URI - assumed 'REQUEST_URI' (this will throw an Error in a future version of PHP) in /home/bogotas/public_html/includes/bogota.php on line 1073
+[01-Aug-2023 22:50:00 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/bogotas/public_html/includes/header.php on line 91
+[01-Aug-2023 22:50:00 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/bogotas/public_html/includes/header.php on line 91
+[01-Aug-2023 22:50:00 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/bogotas/public_html/includes/header.php on line 91
+[01-Aug-2023 22:50:00 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/bogotas/public_html/includes/header.php on line 91
+[01-Aug-2023 22:50:41 UTC] PHP Fatal error:  Uncaught Error: Call to a member function campaignMonitorEmail() on null in /home/bogotas/public_html/plan-bogota/set/restPost.php:74
+Stack trace:
+#0 {main}
+  thrown in /home/bogotas/public_html/plan-bogota/set/restPost.php on line 74
+[01-Aug-2023 22:50:56 UTC] PHP Warning:  Use of undefined constant HTTP_HOST - assumed 'HTTP_HOST' (this will throw an Error in a future version of PHP) in /home/bogotas/public_html/includes/bogota.php on line 1073
+[01-Aug-2023 22:50:56 UTC] PHP Warning:  Use of undefined constant REQUEST_URI - assumed 'REQUEST_URI' (this will throw an Error in a future version of PHP) in /home/bogotas/public_html/includes/bogota.php on line 1073
+[01-Aug-2023 22:50:56 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/bogotas/public_html/includes/menu_mobile.php on line 18
+[01-Aug-2023 22:50:56 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/bogotas/public_html/includes/menu_mobile.php on line 18
+[01-Aug-2023 22:50:56 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/bogotas/public_html/includes/menu_mobile.php on line 18
+[01-Aug-2023 22:50:56 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/bogotas/public_html/includes/menu_mobile.php on line 18
+[01-Aug-2023 22:50:56 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/bogotas/public_html/includes/menu_mobile.php on line 18
+[01-Aug-2023 22:50:56 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/bogotas/public_html/includes/menu.php on line 20
+[01-Aug-2023 22:50:56 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/bogotas/public_html/includes/menu.php on line 20
+[01-Aug-2023 22:50:56 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/bogotas/public_html/includes/menu.php on line 20
+[01-Aug-2023 22:50:56 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/bogotas/public_html/includes/menu.php on line 20
+[01-Aug-2023 22:50:56 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/bogotas/public_html/includes/menu.php on line 20
+[01-Aug-2023 22:50:56 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/bogotas/public_html/includes/header.php on line 23
+[01-Aug-2023 22:50:56 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/bogotas/public_html/includes/header.php on line 23
+[01-Aug-2023 22:50:56 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/bogotas/public_html/includes/header.php on line 59
+[01-Aug-2023 22:50:56 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/bogotas/public_html/includes/header.php on line 59
+[01-Aug-2023 22:50:56 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/bogotas/public_html/includes/header.php on line 59
+[01-Aug-2023 22:50:56 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/bogotas/public_html/includes/header.php on line 59
+[01-Aug-2023 22:50:56 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/bogotas/public_html/includes/header.php on line 59

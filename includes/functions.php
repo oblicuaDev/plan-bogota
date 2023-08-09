@@ -1,5 +1,30 @@
 <?php
+function campaignMonitorEmail($email,$subject="Tu reserva en Plan Bogotá te está esperando", $template, $mergeTags){
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+    CURLOPT_URL => 'https://api.createsend.com/api/v3.2/transactional/smartemail/'.$template.'/send',
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'POST',
+    CURLOPT_POSTFIELDS =>'{
+        "To": ["'.$email.'"],
+        "Data":'.$mergeTags.',
+        "ConsentToTrack": "yes"
+    }',
+    CURLOPT_HTTPHEADER => array(
+        'Content-Type: application/json',
+        'Authorization: Basic ZUg3czhIdEJXQlhYQlVtS2Q4U2tvc3hLZVZLL3RuVFMyQi9tcDUvWHp0M1dXZDJ0dVJYclVsOGxENnlOa1Zld2t4dnI2RHFLWmtPcS9TbEJJYUlkd1JQejBLU245cTcrcDFyMnVSUStFWXRRZE9Tak85VjdTVmhKYnV2TCtKeVMrMnFrTFR6RlFhRE9zbG9GdjlLcTFnPT06'
+    ),
+    ));
+    $response = curl_exec($curl);
 
+    curl_close($curl);
+    return $response;
+}
 function sendNotification($emailto, $params)
 {
     $curl = curl_init();

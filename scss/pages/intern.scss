@@ -537,6 +537,17 @@
   position: relative;
   max-height: 130px;
   overflow: hidden;
+  ul {
+    list-style: disc;
+    padding-left: 20px;
+    li {
+      list-style: disc;
+      color: gray;
+      font-size: 14px;
+      line-height: 16px;
+      margin-bottom: 16px;
+    }
+  }
 }
 
 .texto::after {

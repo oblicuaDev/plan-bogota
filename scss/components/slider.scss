@@ -54,3 +54,37 @@ html .ui-button.ui-state-disabled:active {
 .ui-slider-horizontal .ui-slider-handle {
   top: -5px;
 }
+
+/* Estilos para el contenedor del slider */
+#price-slider-container {
+  width: 80%; /* Ancho del contenedor */
+  margin: 20px auto; /* Centrar el contenedor en la página */
+}
+
+/* Estilos para el slider */
+#price-slider {
+  width: 100%;
+  height: 5px;
+  -webkit-appearance: none; /* Quitar el estilo nativo del slider en Safari */
+  background: #ddd; /* Color de fondo del slider */
+  border-radius: 5px; /* Bordes redondeados */
+  outline: none; /* Quitar el contorno del slider */
+}
+
+/* Estilos para la barra del slider */
+#price-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Quitar el estilo nativo del thumb en Safari */
+  appearance: none; /* Quitar el estilo nativo del thumb */
+  width: 15px; /* Ancho del thumb */
+  height: 15px; /* Altura del thumb */
+  background: #f6931f; /* Color del thumb */
+  border-radius: 50%; /* Forma circular */
+  cursor: pointer; /* Cambiar el cursor al pasar por encima */
+}
+
+/* Estilos para el span "amount" */
+#amount {
+  font-size: 10px;
+  width: 100%;
+  color: #f6931f; /* Color del texto */
+}

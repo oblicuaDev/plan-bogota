@@ -1,7 +1,7 @@
 <?php $bodyClass="intern"; include "includes/head.php"; $plan = $pb->getPlans($_GET["planid"]); $company =  $pb->getCompany($plan->field_pb_oferta_empresa); ?>
 <body class="intern">
   <main>
-    <img src="<?=$plan->field_img != "" ? $plan->field_img : $plan->field_pb_oferta_img_listado?>" alt="Imagen Banner" id="mi-imagen">
+    <img src="<?=$plan->field_img != "" ? $plan->field_img : $plan->field_pb_oferta_img_listado?>" alt="Imagen Banner" id="mi-imagen" style="display:none;">
     <div
     id="container"
       class="intern-banner"
@@ -10,7 +10,7 @@
       "
     >
       <div class="content">
-        <a href="/<?=$_GET['lang']?><?=$project_base?>encuentra-tu-plan" class="ms900 uppercase btn-back btn"
+        <a href="" class="ms900 uppercase btn-back btn"
           ><img src="<?=$project_base?>images/arrow_back.svg" alt="arrow_back" /> Volver
         </a>
         <div class="info">
@@ -36,7 +36,7 @@
           <img
             loading="lazy"
             src="https://picsum.photos/20/20"
-            data-src="<?=$plan->field_gal_1?>"
+            data-src="<?=$plan->field_gal_1 ? $plan->field_gal_1 : $plan->field_gal_2?>"
             alt="gallery"
             class="lazyload"
             id="principal_img"
@@ -102,10 +102,10 @@
 
         </div>
         <button class="leer-mas ms500">Leer más</button>
-          <p class="persons">578 personas han reservado</p>
+          <p class="persons"><span>578</span> personas han reservado</p>
           
           <div class="reserva ms900">
-            Solo quedan 2 reservas con este precio ¡Apúrate a reservar!
+          ¡No te quedes sin tu lugar! Quedan solo unas pocas reservas disponibles. Reserva de inmediato.
           </div>
           <div class="prices">
             <p class="prices-discount ms700">$<?=number_format($plan->field_pa,0,",",".")?></p>

@@ -1,3 +1,232 @@
+/**
+ * This function create a cookie
+ * @param {string} cname  The name of var
+ * @param {mixed} cvalue The values of the var
+ * @param {int} exdays Days of expire
+ * @param {String} path   The path of cookie
+ */
+function setCookie(cname, cvalue, exdays, path = "") {
+  var d = new Date();
+  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+  var expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/" + path;
+}
+/**
+ * Return the value of a cookie
+ * @param  {string} cname The name of the cookie
+ * @return {string}       The value found or null if it not exists
+ */
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(";");
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return null;
+}
+let zonesArray = [];
+let personsArray = [];
+let segmentsArray = [];
+// Helper function to check if a value is a number
+const isNumber = (n) => typeof n === "number" || n instanceof Number;
+
+// Helper function to update URL parameters
+const updateUrlParams = (param, values) => {
+  const urlParams = new URLSearchParams(window.location.search);
+  urlParams.set(param, values.join(","));
+  const newURL = `${window.location.pathname}?${decodeURIComponent(
+    urlParams.toString()
+  )}`;
+  history.pushState(null, "", newURL);
+  setCookie("prevUrl", newURL);
+};
+
+// Helper function to handle adding or removing elements from an array
+const handleArrayValue = (array, value) => {
+  if (array.includes(value)) {
+    array = array.filter((item) => item !== value);
+  } else {
+    array.push(value);
+  }
+  return array;
+};
+
+function applyFiltersFromURLPlan() {
+  const urlParams = new URLSearchParams(window.location.search);
+
+  if (urlParams.has("categories")) {
+    const filterSetZonas = urlParams.get("categories");
+    segmentsArray = filterSetZonas.split(",").map((id) => parseInt(id, 10));
+  } else {
+    segmentsArray = [];
+  }
+  if (urlParams.has("zones")) {
+    const filterSetZonas = urlParams.get("zones");
+    zonesArray = filterSetZonas.split(",").map((id) => parseInt(id, 10));
+  } else {
+    zonesArray = [];
+  }
+
+  // Marcar los checkboxes de cada filtro según los arreglos correspondientes
+  const checkboxesCategories = document.querySelectorAll(
+    '#categories input[type="checkbox"]'
+  );
+  checkboxesCategories.forEach((checkbox) => {
+    const paramValue = parseInt(checkbox.getAttribute("id").split("-")[1], 10);
+    checkbox.checked = segmentsArray.includes(paramValue);
+  });
+  // Marcar los checkboxes de cada filtro según los arreglos correspondientes
+  const checkboxesZones = document.querySelectorAll(
+    '#zones input[type="checkbox"]'
+  );
+  checkboxesZones.forEach((checkbox) => {
+    const paramValue = parseInt(checkbox.getAttribute("id").split("-")[1], 10);
+    checkbox.checked = zonesArray.includes(paramValue);
+  });
+}
+// Main function to filter plans
+const filterPlans = (
+  zones = null,
+  persons = null,
+  segments = null,
+  price = null,
+  search = null,
+  max = null,
+  el
+) => {
+  $("#preloader").fadeIn();
+
+  const filters = [];
+  let paramValue;
+  if (zones !== null) {
+    zonesArray = handleArrayValue(zonesArray, zones);
+    if (el) {
+      updateUrlParams("zones", zonesArray);
+      paramValue = el.getAttribute("id");
+      filters.push(paramValue);
+    }
+  }
+
+  if (persons !== null) {
+    personsArray = handleArrayValue(personsArray, persons);
+  }
+
+  if (segments !== null) {
+    segmentsArray = handleArrayValue(segmentsArray, segments);
+    if (el) {
+      updateUrlParams("categories", segmentsArray);
+      paramValue = el.getAttribute("id");
+      filters.push(paramValue);
+    }
+  }
+
+  const grid = document.querySelector(".find_plan-grid");
+  if (grid) {
+    document.querySelector(".find_plan-grid").classList.add("loading");
+    grid.innerHTML = ``;
+    let url = `get/filterplans.php?filter=1`;
+
+    if (zonesArray.length > 0) {
+      url += `&zones=${zonesArray.join("+")}`;
+    }
+
+    if (personsArray.length > 0) {
+      url += `&persons=${personsArray.join("+")}`;
+    }
+
+    if (segmentsArray.length > 0) {
+      url += `&segments=${segmentsArray.join("+")}`;
+    }
+
+    if (isNumber(price) && price > 0) {
+      url += `&price=${price}`;
+    }
+
+    if (!!search && search !== "null") {
+      url += `&search=${search}`;
+    }
+
+    if (max && max !== "null") {
+      url += `&max=${max}`;
+    }
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        let template;
+        if (data.length > 0) {
+          let shuffleData = shuffleArray(data);
+          shuffleData.forEach((plan) => {
+            template = `
+            <a href="/${actualLang}/plan-bogota/plan/${get_alias(plan.title)}-${
+              plan.nid
+            }" class="find_plan-grid__item" 
+             data-persons="${plan.field_maxpeople}" data-cat="${
+              plan.field_categoria_comercial
+            }" data-zone="${plan.field_pb_oferta_zona}">
+             <div class="image">
+             <img loading="lazy" class="lazyload" data-src="${
+               plan.field_pb_oferta_img_listado
+             }" src="https://via.placeholder.com/330x240" alt="${plan.title}"/>
+             </div>
+             
+            <div class="info">
+              <div class="lines">
+                <div class="line1"></div>
+                <div class="line2"></div>
+              </div>
+              ${
+                plan.field_percent == 0
+                  ? ""
+                  : `<div class="discount ms900">
+               ${plan.field_percent}% <small class="ms500">DCTO</small>
+               </div>`
+              }
+              <div class="prices">
+              ${
+                !!plan.field_pa
+                  ? `
+             <p class="prices-discount ms500">$${number_format(
+               plan.field_pa,
+               0,
+               ".",
+               "."
+             )}</p>`
+                  : ""
+              }
+                <p class="prices-total ms900">$${number_format(
+                  plan.field_pd,
+                  0,
+                  ".",
+                  "."
+                )}</p>
+              </div>
+              <strong class="ms900">${plan.title}</strong>
+              <p class="ms100">${plan.field_pb_oferta_desc_corta}</p>
+              <small class="link ms900 uppercase"> Ver oferta </small>
+            </div>
+          </a>`;
+            grid.innerHTML += template;
+          });
+        } else {
+          template = `<h2>No se encontraron resultados de la busqueda</h2>`;
+          grid.innerHTML += template;
+        }
+      })
+      .then(() => {
+        grid.classList.remove("loading");
+        removeNoResponseFilters();
+      });
+  }
+};
+
 if ($(".gallery_dot").length) {
   $(".gallery_dot li").hover(function (e) {
     $(".gallery_dot li.active").removeClass("active");
@@ -5,6 +234,19 @@ if ($(".gallery_dot").length) {
     var src = $($(e.target).children("img")).data("src");
     $(".gallery #principal_img").attr("src", src);
   });
+}
+
+function getRandomNumberBetween200And1000() {
+  // Genera un número aleatorio entre 0 y 1
+  const random = Math.random();
+  // Escala y desplaza el número para que esté entre 200 y 1000
+  const randomNumber = Math.floor(random * 801) + 200;
+  return randomNumber;
+}
+
+if (document.querySelector(".persons")) {
+  document.querySelector(".persons span").innerHTML =
+    getRandomNumberBetween200And1000();
 }
 
 // LAZY LOADING IMAGES
@@ -58,7 +300,7 @@ function filtersAll() {
               .replace(/\$|\.|,/g, "")
           )}, ${searchValue != "null" ? `'${searchValue}'` : null}, ${
             maxValue != "" ? maxValue : null
-          })" /><label class="filtercheck" for="zone-${
+          },this)" /><label class="filtercheck" for="zone-${
             zone.tid
           }" class="ms500">${zone.name}</label></li>`;
         });
@@ -77,7 +319,7 @@ function filtersAll() {
               .replace(/\$|\.|,/g, "")
           )},  ${searchValue != "null" ? `'${searchValue}'` : null},${
             maxValue != "" ? maxValue : null
-          })" /><label class="filtercheck" for="cat-${
+          },this)" /><label class="filtercheck" for="cat-${
             segment.tid
           }" class="ms500">${segment.name}</label></li>`;
         });
@@ -85,12 +327,9 @@ function filtersAll() {
     })
     .then(() => {
       removeNoResponseFilters();
+      applyFiltersFromURLPlan();
     });
 }
-
-let zonesArray = [];
-let personsArray = [];
-let segmentsArray = [];
 
 function without(array, what) {
   return array.filter(function (element) {
@@ -99,6 +338,8 @@ function without(array, what) {
 }
 
 $("#resetfilters").click(function () {
+  history.pushState(null, "", `/${actualLang}/plan-bogota/encuentra-tu-plan`);
+  setCookie("prevUrl", `/${actualLang}/plan-bogota/encuentra-tu-plan`);
   const urlSearchParams = new URLSearchParams(window.location.search);
   const searchParam = urlSearchParams.get("search");
   document
@@ -128,8 +369,8 @@ $("#resetfilters").click(function () {
 
 // Crear el slider al cargar la página
 const items = document.querySelectorAll(".find_plan-grid__item");
-let minPrice = Infinity;
-let maxPrice = -Infinity;
+let minPrice = 0;
+let maxPrice = 0;
 items.forEach((item) => {
   const price = parseFloat(item.dataset.price);
   if (price < minPrice) {
@@ -139,150 +380,63 @@ items.forEach((item) => {
     maxPrice = price;
   }
 });
-$("#slider-range-max").slider({
-  range: "max",
-  min: minPrice,
-  max: maxPrice,
-  value: maxPrice,
-  step: 1000,
-  change: function (event, ui) {
-    // filterPlans(null, null, null, ui.value, null, null);
-  },
-  slide: function (event, ui) {
-    $("#amount").val(`$${number_format(ui.value, 0, ".", ".")}`);
-  },
-});
-const filterPlans = (
-  zones = null,
-  persons = null,
-  segments = null,
-  price = null,
-  search = null,
-  max = null
-) => {
-  $("#preloader").fadeIn();
-  if (zones != null) {
-    if (zonesArray.includes(zones)) {
-      zonesArray = without(zonesArray, zones);
-    } else {
-      zonesArray.push(zones);
-    }
+// Función para dar formato a los números con separadores de miles
+function number_format(number, decimals, decPoint, thousandsSep) {
+  decimals = decimals || 0;
+  number = parseFloat(number);
+  if (!decPoint || !thousandsSep) {
+    decPoint = ".";
+    thousandsSep = ",";
   }
-  if (persons != null) {
-    if (personsArray.includes(persons)) {
-      personsArray = without(personsArray, persons);
-    } else {
-      personsArray.push(persons);
-    }
+  var roundedNumber = Math.round(Math.abs(number) * ("1e" + decimals)) + "";
+  var numbersString = decimals
+    ? roundedNumber.slice(0, decimals * -1)
+    : roundedNumber;
+  var decimalsString = decimals ? roundedNumber.slice(decimals * -1) : "";
+  var formattedNumber = "";
+  while (numbersString.length > 3) {
+    formattedNumber = thousandsSep + numbersString.slice(-3) + formattedNumber;
+    numbersString = numbersString.slice(0, -3);
   }
-  if (segments != null) {
-    if (segmentsArray.includes(segments)) {
-      segmentsArray = without(segmentsArray, segments);
-    } else {
-      segmentsArray.push(segments);
-    }
-  }
+  return (
+    (number < 0 ? "-" : "") +
+    numbersString +
+    formattedNumber +
+    (decimalsString ? decPoint + decimalsString : "")
+  );
+}
 
-  const isNumber = (n) => typeof n === "number" || n instanceof Number;
-
-  let grid = document.querySelector(".find_plan-grid");
-  if (grid) {
-    document.querySelector(".find_plan-grid").classList.add("loading");
-    grid.innerHTML = ``;
-    let url = `get/filterplans.php?filter=1`;
-
-    if (zonesArray.length > 0) {
-      url += `&zones=${zonesArray.join("+")}`;
-    }
-    if (personsArray.length > 0) {
-      url += `&persons=${personsArray.join("+")}`;
-    }
-    if (segmentsArray.length > 0) {
-      url += `&segments=${segmentsArray.join("+")}`;
-    }
-    if (price > 0) {
-      url += `&price=${price}`;
-    }
-    if (!!search && search != "null") {
-      url += `&search=${search}`;
-    }
-    if (max && max != "null") {
-      url += `&max=${max}`;
-    }
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        let template;
-        if (data.length > 0) {
-          data.forEach((plan) => {
-            template = `
-         <a href="/${actualLang}/plan-bogota/plan/${get_alias(plan.title)}-${
-              plan.nid
-            }" class="find_plan-grid__item" 
-          data-persons="${plan.field_maxpeople}" data-cat="${
-              plan.field_categoria_comercial
-            }" data-zone="${plan.field_pb_oferta_zona}">
-          <div class="image">
-          <img loading="lazy" class="lazyload" data-src="${
-            plan.field_pb_oferta_img_listado
-          }" src="https://via.placeholder.com/330x240" alt="${plan.title}"/>
-          </div>
-          
-         <div class="info">
-           <div class="lines">
-             <div class="line1"></div>
-             <div class="line2"></div>
-           </div>
-           ${
-             plan.field_percent == 0
-               ? ""
-               : `<div class="discount ms900">
-            ${plan.field_percent}% <small class="ms500">DCTO</small>
-            </div>`
-           }
-           <div class="prices">
-           ${
-             !!plan.field_pa
-               ? `
-          <p class="prices-discount ms500">$${number_format(
-            plan.field_pa,
-            0,
-            ".",
-            "."
-          )}</p>`
-               : ""
-           }
-             <p class="prices-total ms900">$${number_format(
-               plan.field_pd,
-               0,
-               ".",
-               "."
-             )}</p>
-           </div>
-           <strong class="ms900">${plan.title}</strong>
-           <p class="ms100">${plan.field_pb_oferta_desc_corta}</p>
-           <small class="link ms900 uppercase"> Ver oferta </small>
-         </div>
-       </a>`;
-            grid.innerHTML += template;
-          });
-        } else {
-          template = `<h2>No se encontraron resultados de la busqueda</h2>`;
-          grid.innerHTML += template;
-        }
-      })
-      .then(() => {
-        grid.classList.remove("loading");
-        removeNoResponseFilters();
-      });
+// Función para actualizar el valor del span "amount"
+function updateAmount(value) {
+  var amountSpan = document.getElementById("amount");
+  if (amountSpan) {
+    amountSpan.value = `$${number_format(value, 0, ".", ".")}`;
   }
-};
+}
+// Obtener los elementos necesarios
+var priceSlider = document.getElementById("price-slider");
+
+// Establecer el valor inicial del span "amount"
+updateAmount(maxPrice);
+if (priceSlider) {
+  // Escuchar el evento "input" del slider para actualizar el valor del span en tiempo real
+  priceSlider.addEventListener("input", function (event) {
+    var value = parseInt(event.target.value);
+    updateAmount(value);
+  });
+  // Escuchar el evento "change" del slider para actualizar el valor del span cuando se establezca un valor final
+  priceSlider.addEventListener("change", function (event) {
+    var value = parseInt(event.target.value);
+    filterPlans(null, null, null, value, null, null);
+  });
+}
 
 if (document.querySelector(".find_plan-grid")) {
+  applyFiltersFromURLPlan();
   filterPlans(
+    zonesArray,
     null,
-    null,
-    null,
+    segmentsArray,
     null,
     searchValue != "null" ? `'${searchValue}'` : null,
     null
@@ -429,34 +583,6 @@ function get_alias(str) {
   return str;
 }
 
-function number_format(number, decimals, dec_point, thousands_point) {
-  if (number == null || !isFinite(number)) {
-    throw new TypeError("number is not valid");
-  }
-
-  if (!decimals) {
-    var len = number.toString().split(".").length;
-    decimals = len > 1 ? len : 0;
-  }
-
-  if (!dec_point) {
-    dec_point = ".";
-  }
-
-  if (!thousands_point) {
-    thousands_point = ",";
-  }
-
-  number = parseFloat(number).toFixed(decimals);
-
-  number = number.replace(".", dec_point);
-
-  var splitNum = number.split(dec_point);
-  splitNum[0] = splitNum[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_point);
-  number = splitNum.join(dec_point);
-
-  return number;
-}
 function validateReserva() {
   if ($("#planForm").length > 0) {
     $("#planForm").validate({
@@ -486,7 +612,9 @@ function validateReserva() {
               $('#planForm button[type="submit"]').html("Enviado...");
               $('#planForm button[type="submit"]').html("RESERVA GRATIS AHORA");
               $.fancybox.open({
-                src: "boxes/thanks.php",
+                src: `boxes/thanks.php?phonecompany=${
+                  document.getElementById("ucompanylink").value
+                }`,
                 type: "ajax",
                 touch: false,
               });
@@ -637,14 +765,16 @@ function removeNoResponseFilters() {
 }
 
 if (window.innerWidth < 768) {
-  document.querySelector(".filters").addEventListener("click", () => {
-    document.querySelector(".filters").classList.toggle("active");
-    if (document.querySelector(".filters").classList.contains("active")) {
-      document.querySelector("html").style.overflow = "hidden";
-    } else {
-      document.querySelector("html").style.overflowY = "scroll";
-    }
-  });
+  if (document.querySelector(".filters")) {
+    document.querySelector(".filters").addEventListener("click", () => {
+      document.querySelector(".filters").classList.toggle("active");
+      if (document.querySelector(".filters").classList.contains("active")) {
+        document.querySelector("html").style.overflow = "hidden";
+      } else {
+        document.querySelector("html").style.overflowY = "scroll";
+      }
+    });
+  }
 }
 
 if (document.querySelector(".faqs .accordion")) {
@@ -654,4 +784,10 @@ if (document.querySelector(".faqs .accordion")) {
     heightStyle: "content",
     collapsible: true,
   });
+}
+
+if (document.querySelector(".intern .btn-back")) {
+  document
+    .querySelectorAll(".intern .btn-back")
+    .forEach((el) => (el.href = getCookie("prevUrl")));
 }

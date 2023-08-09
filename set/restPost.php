@@ -69,26 +69,13 @@ if($responsebq != ""){
   $date = new DateTime();
   $date->setTimeZone(new DateTimeZone("America/Bogota"));
   $thetime = $date->format('d/m/Y - H:i:s');
-  
 
-  $to = $uemail;
-  $params = "{\"PBSERIAL\":\"$ID\",\"PBCOMPANY\":\"$ucompanyname\",\"PBOFFER\":\"$uoferta\",\"PBMAIL\":\"$ucompanyemail\",\"PBTEL\":\"$ucompanyphone\",\"PBLINK\":\"$ucompanylink\"},\"templateId\":63}";
-  sendNotification($to, $params);
-  
-  //Admin Message
-  $to = "planbogota@idt.gov.co";
-  $params = "{\"PBNAME\":\"$uname\",\"PBSERIAL\":\"$ID\",\"PBOFFER\":\"$uoferta\",\"PBCOMPANY\":\"$ucompanyname\",\"PBMAIL\":\"$uemail\",\"PBTEL\":\"$uphone\",\"PBPRICE\":\"$uprice\"},\"templateId\":64}";
-  sendNotification($to, $params);
-  
-  //Company Message
-  $to = $ucompanyemail;
-  $params = "{\"PBNAME\":\"$uname\",\"PBSERIAL\":\"$ID\",\"PBOFFER\":\"$uoferta\",\"PBMAIL\":\"$uemail\",\"PBTEL\":\"$uphone\",\"PBPRICE\":\"$uprice\"},\"templateId\":62}";
-  sendNotification($to, $params);
-  
-  
-  
+
+  $emailSended = campaignMonitorEmail($uemail,"Tu reserva en Plan Bogotá te está esperando", "ebb8f839-4a4b-481f-9e90-c1eee295c9f4", "{\"PBSERIAL\":\"$ID\",\"PBCOMPANY\":\"$ucompanyname\",\"PBOFFER\":\"$uoferta\",\"PBMAIL\":\"$ucompanyemail\",\"PBTEL\":\"$ucompanyphone\",\"PBLINK\":\"$ucompanylink\"}");
+  $emailSended2 = campaignMonitorEmail("planbogota@idt.gov.co","Tu reserva en Plan Bogotá te está esperando", "ebb8f839-4a4b-481f-9e90-c1eee295c9f4", "{\"PBSERIAL\":\"$ID\",\"PBCOMPANY\":\"$ucompanyname\",\"PBOFFER\":\"$uoferta\",\"PBMAIL\":\"$ucompanyemail\",\"PBTEL\":\"$ucompanyphone\",\"PBLINK\":\"$ucompanylink\"}");
+
   $array['message'] = 1;
-  $array['insertmessage'] = $responsebq;
+  $array['insertmessage'] =  $emailSended;
   function wh_log($log_msg)
   {
       $log_filename = 'log';

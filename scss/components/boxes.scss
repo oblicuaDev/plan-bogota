@@ -269,14 +269,8 @@
     // background-color: rgba($color: #2c85d7, $alpha: .2);
     padding: 50px 0;
     .boxes__header {
-      font-size: 3.5rem;
-      display: flex;
       text-align: center;
-      align-items: center;
-      h2 {
-        color: #266dc7;
-      }
-      justify-content: center;
+
       @media screen and (max-width: 1080px) {
         background-color: rgba(73, 169, 46, 0.2);
         height: 80px;
@@ -292,6 +286,7 @@
     .boxes__body {
       display: flex;
       align-items: center;
+      justify-content: center;
       font-size: 1.8rem;
       font-weight: 100;
       padding: 20px;
@@ -324,6 +319,26 @@
         text-transform: uppercase;
         &:hover {
           opacity: 0.5;
+        }
+      }
+    }
+    h2 {
+      color: #266dc7;
+      font-size: 3.5rem;
+      margin-bottom: 15px;
+    }
+    p,
+    strong {
+      font-size: 1.4rem;
+      max-width: 480px;
+      margin: 15px auto;
+      display: block;
+      text-align: center;
+      a {
+        color: #266dc7;
+        text-decoration: underline;
+        &:hover {
+          color: darken($color: #266dc7, $amount: 10);
         }
       }
     }
