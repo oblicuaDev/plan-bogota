@@ -46,6 +46,10 @@
           </form>
         </div>
       </div>
+      <section class="categoriessection">
+        <div class="categories">
+        </div>
+      </section>
       <div class="recommendation">
         <div class="container">
           <h3 class="ms900"><?=$pb->generalInfo->field_ui_3?></h3>
@@ -83,6 +87,21 @@
           >
         </div>
       </div>
+      <section class="stepssection">
+        <h3 class="ms900">¿Cómo reservar?</h3>
+        <div class="steps">
+        <?php 
+        $textos = explode('|', $pb->generalInfo->field_textos_como_reservar);
+        for ($i=0; $i < count($textos); $i++) { 
+          $texto = $textos[$i];
+          ?>
+          <article><?=$texto?></article>
+          <?php
+        }
+        ?>
+
+        </div>
+      </section>
     </main>
     <?php include 'includes/imports.php'?>
   </body>

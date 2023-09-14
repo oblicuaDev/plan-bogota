@@ -1,4 +1,4 @@
-<?php $bodyClass="intern"; include "includes/head.php"; $plan = $pb->getPlans($_GET["planid"]); $company =  $pb->getCompany($plan->field_pb_oferta_empresa); ?>
+<?php $bodyClass="intern"; include "includes/head.php"; $plan = $pb->getPlans($_GET["planid"]); $company =  $pb->getCompany($plan->field_pb_oferta_empresa); var_dump($plan->field_pb_oferta_empresa); ?>
 <body class="intern">
   <main>
     <img src="<?=$plan->field_img != "" ? $plan->field_img : $plan->field_pb_oferta_img_listado?>" alt="Imagen Banner" id="mi-imagen" style="display:none;">
@@ -61,6 +61,9 @@
           <?=$plan->title?>
           </h2>
           <div class="companyCont">
+           
+            <?= $company->field_featuredcompany == 1 ? '<img src="images/star.png" alt="stars" />': "" ?>
+          
             <?=$company->field_pb_empresa_logo != "" ? '<img src="'.$company->field_pb_empresa_logo.'" alt="'.$company->field_pb_empresa_titulo.'" class="logoCompany"/>' : "" ?>
             <div class="fxcol">
               <span class="company ms500"><?=$company->field_pb_empresa_titulo ?></span>
@@ -167,6 +170,7 @@
     <input type="hidden" class="ms500" id="ccategoryid" name="ccategoryid" value="<?=$company->field_segment != "" ? $company->field_segment : 0 ?>" />
     <input type="hidden" class="ms500" id="ccategory" name="ccategory" value="<?=$company->field_segment_1?>" />
     <input type="hidden" class="ms500" id="numberPersons" name="numberPersons" value="1" />
+    <input type="hidden" class="ms500" id="background" name="background" value="<?=$plan->field_img != "" ? $plan->field_img : $plan->field_pb_oferta_img_listado?>" />
     <div class="politics_checkbox">
       <input type="checkbox" name="politics" id="politics" checked />
       <span class="politics_checkbox_mark"></span>

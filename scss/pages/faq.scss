@@ -1,0 +1,49 @@
+.faq {
+  padding-top: 180px;
+  .accordion {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 20px auto;
+    border-radius: 0;
+  }
+  .accordion-item {
+    border: 0;
+    margin-bottom: 5px;
+  }
+  .accordion-header {
+    background-color: #6dc184;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1.7rem;
+    color: #fff;
+    font-family: "MuseoSans-900";
+    padding: 15px;
+    letter-spacing: 0.09em;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    &:hover {
+      background-color: darken($color: #6dc184, $amount: 10);
+    }
+  }
+  .accordion-content {
+    display: none;
+    padding: 10px;
+    font-size: 14px;
+    color: #4d4d4d;
+    line-height: 22px;
+    &.active {
+      display: block;
+    }
+    ul {
+      list-style: disc;
+      padding-left: 20px;
+    }
+  }
+}
+
+.politics main .container {
+  display: flex;
+  justify-content: center;
+}

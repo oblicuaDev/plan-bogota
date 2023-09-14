@@ -28,7 +28,46 @@
       "pt": {
         "title": "Encuentra tu plan",
         "link": "/pt/plan-bogota/encuentra-tu-plan"
-      }
+      },
+
+      "children": [
+        {
+          "es": {
+            "title": "Ancestral",
+            "link": "/es/plan-bogota/encuentra-tu-plan?categories=126"
+          }
+        },
+        {
+          "es": {
+            "title": "Naturaleza y Aventura",
+            "link": "/es/plan-bogota/encuentra-tu-plan?categories=128"
+          }
+        },
+        {
+          "es": {
+            "title": "Entretenimiento",
+            "link": "/es/plan-bogota/encuentra-tu-plan?categories=130"
+          }
+        },
+        {
+          "es": {
+            "title": "Alojamientos",
+            "link": "/es/plan-bogota/encuentra-tu-plan?categories=132"
+          }
+        },
+        {
+          "es": {
+            "title": "Gastronomía",
+            "link": "/es/plan-bogota/encuentra-tu-plan?categories=133"
+          }
+        },
+        {
+          "es": {
+            "title": "Fines de semana",
+            "link": "/es/plan-bogota/encuentra-tu-plan?categories=194"
+          }
+        }
+      ]
     },
     {
       "es": {

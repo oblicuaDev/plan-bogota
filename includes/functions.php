@@ -1,5 +1,5 @@
 <?php
-function campaignMonitorEmail($email,$subject="Tu reserva en Plan Bogotá te está esperando", $template, $mergeTags){
+function campaignMonitorEmail($email,$subject, $template, $mergeTags){
     $curl = curl_init();
     curl_setopt_array($curl, array(
     CURLOPT_URL => 'https://api.createsend.com/api/v3.2/transactional/smartemail/'.$template.'/send',

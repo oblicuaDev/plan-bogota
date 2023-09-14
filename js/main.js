@@ -58,6 +58,18 @@ const handleArrayValue = (array, value) => {
   return array;
 };
 
+function shorter(text, chars_limit = 35) {
+  // Cambia al número de caracteres que deseas mostrar
+  var chars_text = text.length;
+  text = text + " ";
+  text = text.substring(0, chars_limit);
+  text = text.substring(0, text.lastIndexOf(" "));
+  if (chars_text > chars_limit) {
+    text = text + "...";
+  }
+  return text;
+}
+
 function applyFiltersFromURLPlan() {
   const urlParams = new URLSearchParams(window.location.search);
 
@@ -208,7 +220,7 @@ const filterPlans = (
                   "."
                 )}</p>
               </div>
-              <strong class="ms900">${plan.title}</strong>
+              <strong class="ms900">${shorter(plan.title)}</strong>
               <p class="ms100">${plan.field_pb_oferta_desc_corta}</p>
               <small class="link ms900 uppercase"> Ver oferta </small>
             </div>
@@ -576,6 +588,8 @@ function get_alias(str) {
   str = str.replace(/ /g, "-", str); //Espacios
   str = str.replace(/  /g, "-", str); //Espacios
   str = str.replace(/\./g, "", str); //Punto
+  str = str.replace(":", "", str); //Punto
+  str = str.replace("?", "", str); //Punto
 
   //Mayusculas
   str = str.toLowerCase();
@@ -606,17 +620,18 @@ function validateReserva() {
           dataType: "json",
           success: function (data) {
             if (data.message == 1) {
-              $("#planForm")[0].reset();
               $('#planForm button[type="submit"]').prop("disabled", false);
               $('#planForm button[type="submit"]').removeClass("loading");
               $('#planForm button[type="submit"]').html("Enviado...");
               $('#planForm button[type="submit"]').html("RESERVA GRATIS AHORA");
               $.fancybox.open({
-                src: `boxes/thanks.php?phonecompany=${
-                  document.getElementById("ucompanylink").value
-                }`,
+                src: `boxes/thanks.php?serial=asda2131`,
                 type: "ajax",
                 touch: false,
+                afterClose: function (instance, current) {
+                  console.log("Cuadro modal cerrado");
+                  $("#planForm")[0].reset();
+                },
               });
             } else {
               $('#planForm button[type="submit"]').prop("disabled", false);
@@ -786,8 +801,40 @@ if (document.querySelector(".faqs .accordion")) {
   });
 }
 
+function absoluteURL(str) {
+  if (str.indexOf("https") == -1) {
+    return "https://bogotadc.travel" + str.replace(/\s/g, "");
+  } else {
+    return str;
+  }
+}
 if (document.querySelector(".intern .btn-back")) {
   document
     .querySelectorAll(".intern .btn-back")
     .forEach((el) => (el.href = getCookie("prevUrl")));
+}
+if (document.querySelector(".categoriessection .categories")) {
+  fetch(`../mice/get/filter.php?lang=${actualLang}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ filter: "categorias_comerciales_pb" }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      data
+        .filter((el) => {
+          console.log({ name: el.name, field_home_view: el.field_home_view });
+          return el.field_home_view == "1";
+        })
+        .forEach(({ name, tid, field_format_icon }) => {
+          let template = `<a href="https://www.bogotadc.travel/es/plan-bogota/encuentra-tu-plan?categories=${tid}"><img src="${field_format_icon}" alt="${name}"><small>${name}</small></a>`;
+          document.querySelector(".categoriessection .categories").innerHTML +=
+            template;
+        });
+    })
+    .catch((error) => {
+      console.error("Hubo un error:", error);
+    });
 }
