@@ -12,7 +12,7 @@
     margin-bottom: 5px;
   }
   .accordion-header {
-    background-color: #6dc184;
+    background-color: #23533A;
     padding: 10px;
     cursor: pointer;
     font-size: 1.7rem;
@@ -24,7 +24,7 @@
     align-items: center;
     cursor: pointer;
     &:hover {
-      background-color: darken($color: #6dc184, $amount: 10);
+      background-color: darken($color: #23533A, $amount: 10);
     }
   }
   .accordion-content {
