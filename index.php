@@ -17,11 +17,11 @@
                   <img src="images/lupa.svg" alt="lupa" />
                   <input
                     type="search"
-                    aria-label="search"
                     name="search"
                     id="search"
                     placeholder="<?=$pb->generalInfo->field_ui_2?>"
                   />
+                  <label for="search">Buscar</label>
                   <small>Este campo no puede estar vacio*</small>
                 </div>
               </div>
