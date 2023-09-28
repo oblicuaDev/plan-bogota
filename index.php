@@ -15,13 +15,15 @@
               <div class="left">
                 <div class="input">
                   <img src="images/lupa.svg" alt="lupa" />
-                  <input
-                    type="search"
-                    aria-labelledby="search"
-                    name="search"
-                    id="search"
-                    placeholder="<?=$pb->generalInfo->field_ui_2?>"
-                  />
+                  <label for="search">
+                    <input
+                      type="search"
+                      aria-labelledby="search"
+                      name="search"
+                      id="search"
+                      placeholder="<?=$pb->generalInfo->field_ui_2?>"
+                    />
+                    </label>
                   <small>Este campo no puede estar vacio*</small>
                 </div>
               </div>
