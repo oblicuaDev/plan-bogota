@@ -17,7 +17,7 @@
                   <img src="images/lupa.svg" alt="lupa" />
                   <input
                     type="search"
-                    aria-label="search"
+                    aria-labelledby="search"
                     name="search"
                     id="search"
                     placeholder="<?=$pb->generalInfo->field_ui_2?>"
