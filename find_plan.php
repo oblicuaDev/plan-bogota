@@ -141,7 +141,7 @@ $min = calc_attribute_in_array($plans, 'field_pd', 'min');
             id="searchForm" autocomplete="off">
             <span>
               <div class="input">
-                <input onfocus="this.value=''" type="search" name="search" id="search_" value="<?=$_GET[" search"]?>"
+                <input onfocus="this.value=''" type="search" name="search" id="searchInput" value="<?=$_GET[" search"]?>"
                 placeholder="<?=$pb->generalInfo->field_ui_2?>"
                 />
               </div>
