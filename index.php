@@ -19,7 +19,7 @@
                     type="search"
                     aria-label="search"
                     name="search"
-                    id="search"
+                    id="searchInput"
                     placeholder="<?=$pb->generalInfo->field_ui_2?>"
                   />
                   <small>Este campo no puede estar vacio*</small>
