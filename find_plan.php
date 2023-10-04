@@ -132,7 +132,7 @@ $min = calc_attribute_in_array($plans, 'field_pd', 'min');
           </div>
         </div>
       </details>
-      <details open id="search">
+      <details open id="searchOpen">
         <summary><img src="<?=$project_base?>images/arrowDown.svg" alt="ArrowDown" />
           <h3 class="ms700">Buscar</h3>
         </summary>
