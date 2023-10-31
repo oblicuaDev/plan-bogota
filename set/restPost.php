@@ -1,7 +1,10 @@
+
 <?php
+
 include "../includes/functions.php";
 //Client Message
 extract($_POST);
+
 $array = array();
 $cid = 0;
 $curl = curl_init();
@@ -73,11 +76,14 @@ if($responsebq != ""){
 
   $emailSended = campaignMonitorEmail($uemail,"Tu reserva para: ".$uoferta . " te está esperando", "ebb8f839-4a4b-481f-9e90-c1eee295c9f4", "{\"PBSERIAL\":\"$ID\",\"PBCOMPANY\":\"$ucompanyname\",\"PBOFFER\":\"$uoferta\",\"PBMAIL\":\"$ucompanyemail\",\"PBTEL\":\"$ucompanyphone\",\"PBLINK\":\"$ucompanylink\"}");
   $emailSended2 = campaignMonitorEmail("planbogota@idt.gov.co","Tu reserva para: ".$uoferta . " te está esperando", "ebb8f839-4a4b-481f-9e90-c1eee295c9f4", "{\"PBSERIAL\":\"$ID\",\"PBCOMPANY\":\"$ucompanyname\",\"PBOFFER\":\"$uoferta\",\"PBMAIL\":\"$ucompanyemail\",\"PBTEL\":\"$ucompanyphone\",\"PBLINK\":\"$ucompanylink\"}");
-  $emailSended3 = campaignMonitorEmail($ucompanyemail,"Nueva reserva realizada de tu oferta: " . $uoferta, "ebb8f839-4a4b-481f-9e90-c1eee295c9f4", "{\"PBSERIAL\":\"$ID\",\"PBCOMPANY\":\"$ucompanyname\",\"PBOFFER\":\"$uoferta\",\"PBMAIL\":\"$ucompanyemail\",\"PBTEL\":\"$ucompanyphone\",\"PBLINK\":\"$ucompanylink\"}");
+  $emailSended3 = campaignMonitorEmail($ucompanyemail,"", "01a8972d-c482-45c7-b1df-0102df04082e", "{\"PBSERIAL\":\"$ID\",\"USERN\":\"$uname\",\"USERPHONE\":\"$uphone\",\"USERMAIL\":\"$uemail\",\"PBOFFER\":\"$uoferta\"}");
+  $emailSended4 = campaignMonitorEmail("dreinovcorp@gmail.com","", "01a8972d-c482-45c7-b1df-0102df04082e", "{\"PBSERIAL\":\"$ID\",\"USERN\":\"$uname\",\"USERPHONE\":\"$uphone\",\"USERMAIL\":\"$uemail\",\"PBOFFER\":\"$uoferta\"}");
 
   $array['message'] = 1;
   $array['serial'] = $ID;
   $array['insertmessage'] =  $emailSended;
+  // $array['insertmessage'] =  $emailSended;
+  $array['emailSended3'] =  $emailSended3;
   function wh_log($log_msg)
   {
       $log_filename = 'log';
@@ -92,7 +98,9 @@ if($responsebq != ""){
    
   wh_log($postfields);
   
-  echo json_encode($array);
 }else{
+  $array['$_POST'] = $_POST;
+  $array['responsebq'] = $responsebq;
   $array['message'] = 0;
 }
+echo json_encode($array);

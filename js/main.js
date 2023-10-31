@@ -103,6 +103,29 @@ function applyFiltersFromURLPlan() {
     checkbox.checked = zonesArray.includes(paramValue);
   });
 }
+function shuffleArrayPlanes(array) {
+  const highlightedObjects = array.filter(
+    (obj) => obj.field_destacar_en_categoria
+  );
+  const nonHighlightedObjects = array.filter(
+    (obj) => !obj.field_destacar_en_categoria
+  );
+
+  // Algoritmo de Fisher-Yates solo para los objetos destacados
+  for (let i = highlightedObjects.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [highlightedObjects[i], highlightedObjects[j]] = [
+      highlightedObjects[j],
+      highlightedObjects[i],
+    ];
+  }
+
+  // Combinar objetos destacados y no destacados
+  const shuffledArray = [...highlightedObjects, ...nonHighlightedObjects];
+
+  return shuffledArray;
+}
+
 // Main function to filter plans
 const filterPlans = (
   zones = null,
@@ -174,15 +197,18 @@ const filterPlans = (
       .then((data) => {
         let template;
         if (data.length > 0) {
-          let shuffleData = shuffleArray(data);
-          shuffleData.forEach((plan) => {
+          data.forEach((plan) => {
             template = `
             <a href="/${actualLang}/plan-bogota/plan/${get_alias(plan.title)}-${
               plan.nid
             }" class="find_plan-grid__item" 
              data-persons="${plan.field_maxpeople}" data-cat="${
               plan.field_categoria_comercial
-            }" data-zone="${plan.field_pb_oferta_zona}">
+            }" data-zone="${
+              plan.field_pb_oferta_zona
+            }" data-field_destacar_en_categoria="${
+              plan.field_destacar_en_categoria
+            }">
              <div class="image">
              <img loading="lazy" class="lazyload" data-src="${
                plan.field_pb_oferta_img_listado
@@ -220,7 +246,7 @@ const filterPlans = (
                   "."
                 )}</p>
               </div>
-              <strong class="ms900">${shorter(plan.title)}</strong>
+              <strong class="ms900">${plan.title}</strong>
               <p class="ms100">${plan.field_pb_oferta_desc_corta}</p>
               <small class="link ms900 uppercase"> Ver oferta </small>
             </div>
@@ -625,7 +651,7 @@ function validateReserva() {
               $('#planForm button[type="submit"]').html("Enviado...");
               $('#planForm button[type="submit"]').html("RESERVA GRATIS AHORA");
               $.fancybox.open({
-                src: `boxes/thanks.php?serial=asda2131`,
+                src: `boxes/thanks.php?serial=${data.serial}`,
                 type: "ajax",
                 touch: false,
                 afterClose: function (instance, current) {
@@ -811,7 +837,7 @@ function absoluteURL(str) {
 if (document.querySelector(".intern .btn-back")) {
   document
     .querySelectorAll(".intern .btn-back")
-    .forEach((el) => (el.href = getCookie("prevUrl")));
+    .forEach((el) => (el.href = "/es/plan-bogota/encuentra-tu-plan"));
 }
 if (document.querySelector(".categoriessection .categories")) {
   fetch(`../mice/get/filter.php?lang=${actualLang}`, {
