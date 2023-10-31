@@ -119,20 +119,20 @@ $min = calc_attribute_in_array($plans, 'field_pd', 'min');
         <div class="cont">
 
           <div id="slider-range-max">
-            <input type="range" id="price-slider" min="<?=$min?>" max="<?=$max?>" step="1000" value="<?=$min?>">
+            <input type="range" aria-label="price-slider" id="price-slider" min="<?=$min?>" max="<?=$max?>" step="1000" value="<?=$min?>">
           </div>
           <div class="flex-values">
             <div class="min-value">$
               <?= number_format($min,0,",",".")?>
             </div>
-            <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            <input type="text" aria-label="amount" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
             <div class="max-value">$
               <?= number_format($max,0,",",".")?>
             </div>
           </div>
         </div>
       </details>
-      <details open id="search">
+      <details open id="searchOpen">
         <summary><img src="<?=$project_base?>images/arrowDown.svg" alt="ArrowDown" />
           <h3 class="ms700">Buscar</h3>
         </summary>
@@ -141,7 +141,7 @@ $min = calc_attribute_in_array($plans, 'field_pd', 'min');
             id="searchForm" autocomplete="off">
             <span>
               <div class="input">
-                <input onfocus="this.value=''" type="search" name="search" id="search" value="<?=$_GET[" search"]?>"
+                <input onfocus="this.value=''" type="search" name="search" id="searchInput" value="<?=$_GET[" search"]?>"
                 placeholder="<?=$pb->generalInfo->field_ui_2?>"
                 />
               </div>

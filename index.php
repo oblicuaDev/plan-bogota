@@ -17,8 +17,9 @@
                   <img src="images/lupa.svg" alt="lupa" />
                   <input
                     type="search"
+                    aria-label="search"
                     name="search"
-                    id="search"
+                    id="searchInput"
                     placeholder="<?=$pb->generalInfo->field_ui_2?>"
                   />
                   <small>Este campo no puede estar vacio*</small>
@@ -26,7 +27,7 @@
               </div>
               <div class="right">
                 <div class="c-select">
-                  <select name="plan" id="plan" class="ms700">
+                  <select name="plan" aria-label="plan" id="plan" class="ms700">
                     <option class="ms700" value="">¿Para cuántos?</option>
                     <option class="ms700" value="1">1 persona</option>
                     <option class="ms700" value="2">2 personas</option>

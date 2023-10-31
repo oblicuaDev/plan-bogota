@@ -330,7 +330,7 @@ function filtersAll() {
         zones.map((zone) => {
           listZones.innerHTML += `<li><input type="checkbox" value="${
             zone.tid
-          }" name="zone-${zone.tid}" id="zone-${
+          }" aria-label="zone-${zone.tid}" name="zone-${zone.tid}" id="zone-${
             zone.tid
           }" onChange="filterPlans(${zone.tid}, null, null,${parseInt(
             $("#amount")
@@ -349,7 +349,7 @@ function filtersAll() {
         pb_segments.map((segment) => {
           listCategories.innerHTML += `<li><input type="checkbox" value="${
             segment.tid
-          }" name="cat-${segment.tid}" id="cat-${
+          }" aria-label="cat-${segment.tid}" name="cat-${segment.tid}" id="cat-${
             segment.tid
           }" onChange="filterPlans(null, null, ${segment.tid},${parseInt(
             $("#amount")
